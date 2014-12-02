@@ -25,7 +25,7 @@ on *:TEXT:!texturepack:#: { msg $chan This is the Modded Faithful 32x32 Texturep
 //Random Commands
 on *:TEXT:why:#: { msg $chan #BecauseToastIsAwesome }
 on *:TEXT:Why:#: { msg $chan #BecauseToastIsAwesome }
-on *:TEXT:!hug:#: { msg $chan $nick hugged $1, how nice! }
+on *:TEXT:!hug:#: { msg $chan $nick hugged $2, how nice! }
 on *:TEXT:!hugall:#: { msg $chan $nick hugged everyone in the chat room! How oh so very nice of them! }
 //Crumb - related commands
 on *:TEXT:!crumbs?:#: { 
@@ -69,6 +69,15 @@ on *:text:!crumbs:#:{
   set -u30 %floodpoints. $+ $nick On
   msg # $nick has a total of $readini(Points.ini,$+(#,.,$nick),Points) Crumbs!
 }
+on $*:text:!pay /Si:#:{
+  if ($4 isnum) {
+    if ($readini(Points.ini,$nick,Points) >= $3 {
+		writeini -n Points.ini $+(#,.,$nick) Points $calc($readini(Points.ini,$nick,Points)-$3)
+		writeini -n Points.ini $+(#,.,$2) Points $calc($readini(Points,ini,$nick,Points)+$3)
+		msg $chan $nick has given $2 $3 crumbs!
+	}
+  }
+ }
 
 on $*:text:/!crumbs (add|remove)/Si:#:{
   if ($nick isop #) {
