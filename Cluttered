@@ -118,3 +118,16 @@ on *:TEXT:!stopnostream:#: {
     .timerNostream off
   }
 }
+
+on *:text:!rank:#:{
+  if ($readini(Points.ini,$nick,Points) <= 9) { msg # $nick you are rank1 with $readini(Points.ini,$nick,Points) Crumbs. Earn $calc(10 - $readini(Points.ini,$nick,Points)) More Crumbs To Become a Rank2 }
+  if ($readini(Points.ini,$nick,Points) > 9) && ($readini(Points.ini,$nick,Points) <= 19) { msg # $nick you are rank2 with $readini(Points.ini,$nick,Points) Crumbs. Earn $calc( 20 - $readini(Points.ini,$nick,Points)) More Crumbs To Become a Rank3 }
+  if ($readini(Points.ini,$nick,Points) > 19) && ($readini(Points.ini,$nick,Points) <= 29) { msg # $nick you are rank3 with $readini(Points.ini,$nick,Points) Crumbs. Earn $calc( 30 - $readini(Points.ini,$nick,Points)) More Crumbs To Become a Rank4 }
+  if ($readini(Points.ini,$nick,Points) > 29) && ($readini(Points.ini,$nick,Points) <= 39) { msg # $nick you are rank4 with $readini(Points.ini,$nick,Points) Crumbs. Earn $calc( 40 - $readini(Points.ini,$nick,Points)) More Crumbs To Become a Rank5 }
+  if ($readini(Points.ini,$nick,Points) > 39) && ($readini(Points.ini,$nick,Points) <= 49) { msg # $nick you are rank5 with $readini(Points.ini,$nick,Points) Crumbs. Earn $calc( 50 - $readini(Points.ini,$nick,Points)) More Crumbs To Become a Rank6 }
+  if ($readini(Points.ini,$nick,Points) > 49) && ($readini(Points.ini,$nick,Points) <= 59) { msg # $nick you are rank6 with $readini(Points.ini,$nick,Points) Crumbs. Earn $calc( 60 - $readini(Points.ini,$nick,Points)) More Crumbs To Become a Rank7 }
+  if ($readini(Points.ini,$nick,Points) > 59) && ($readini(Points.ini,$nick,Points) <= 69) { msg # $nick you are rank7 with $readini(Points.ini,$nick,Points) Crumbs. Earn $calc( 70 - $readini(Points.ini,$nick,Points)) More Crumbs To Become a Rank8 }
+  if ($readini(Points.ini,$nick,Points) > 69) && ($readini(Points.ini,$nick,Points) <= 79) { msg # $nick you are rank8 with $readini(Points.ini,$nick,Points) Crumbs. Earn $calc( 80 - $readini(Points.ini,$nick,Points)) More Crumbs To Become a Rank9 }
+  if ($readini(Points.ini,$nick,Points) > 79) && ($readini(Points.ini,$nick,Points) <= 89) { msg # $nick you are rank9 with $readini(Points.ini,$nick,Points) Crumbs. Earn $calc( 90 - $readini(Points.ini,$nick,Points)) More Crumbs To Become a Rank10 }
+  if ($readini(Points.ini,$nick,Points) > 89) && ($readini(Points.ini,$nick,Points) <= 99) { msg # $nick you are rank10 with $readini(Points.ini,$nick,Points) Crumbs. Earn $calc( 100 - $readini(Points.ini,$nick,Points)) More Crumbs To Become a Ran11 }
+}
