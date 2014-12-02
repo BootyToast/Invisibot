@@ -1,0 +1,120 @@
+on *:TEXT:hello:#: { msg $chan Hey there, $nick }
+on *:TEXT:hi:#: { msg $chan Hey there, $nick }
+on *:TEXT:hey:#: { msg $chan Hey there, $nick }
+on *:TEXT:!bootysongs:#: { msg $chan Type "!songrequest [youtube video link]" in chat to request a song! }
+on *:TEXT:!crumbs?:#: { 
+  if ((%floodpart) || ($($+(%,floodpart.,$nick),2))) { return }
+  set -u10 %floodpart On
+  set -u30 %floodpart. $+ $nick On
+  msg $chan Crumbs are the points system for this channel. When the rank system is implemented, certain ranks will earn you different benefits such as a higher chance at winning raffles, being accepted onto whitelist servers, etc. Earn crumbs by being here and being active in chat. 
+}
+
+on *:TEXT:!ip:#: { msg $chan The IP to the viewer and teamspeak server is BootyNation.playat.ch and running the Direwolf20 1.7.10 pack v1.0.1! Please be respectful. }
+on *:TEXT:!modpack:#: { msg $chan This pack is Technofirma on the FTB Launcher! [PACK CODE: technofirma] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-technofirma-terrafirmacraft-modpack.49502/ }
+on *:TEXT:!mp:#: { msg $chan This pack is Technofirma on the FTB Launcher! [PACK CODE: technofirma] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-technofirma-terrafirmacraft-modpack.49502/ }
+//on *:TEXT:!modpack:#: { msg $chan This pack is Purgatory on the FTB Launcher! [PACK CODE: purgatory] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-purgatory-mod-pack-v0-3-0-hqm-tech-quests-rf-updated-11-21-2014.52413/ }
+//on *:TEXT:!mp:#: { msg $chan This pack is Purgatory on the FTB Launcher! [PACK CODE: purgatory] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-purgatory-mod-pack-v0-3-0-hqm-tech-quests-rf-updated-11-21-2014.52413/ }
+//on *:TEXT:!modpack:#: { msg $chan This pack is Clouds of Darkness on the FTB Launcher! [PACK CODE: darkness] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-clouds-of-darkness-v1-1-2-stable-ultra-hardcore-hqm-adventure-skyblock.49861/page-23 }
+//on *:TEXT:!mp:#: { msg $chan This pack is Clouds of Darkness on the FTB Launcher! [PACK CODE: darkness] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-clouds-of-darkness-v1-1-2-stable-ultra-hardcore-hqm-adventure-skyblock.49861/page-23 }
+//on *:TEXT:!modpack:#: { msg $chan This pack is the Direwolf20 1.7.10 pack on the FTB Launcher! Find out information here! http://forum.feed-the-beast.com/forum/direwolf20-1-7-10.175/ }
+//on *:TEXT:!mp:#: { msg $chan This pack is the Direwolf20 1.7.10 pack on the FTB Launcher! Find out information here! http://forum.feed-the-beast.com/forum/direwolf20-1-7-10.175/ }
+//on *:TEXT:!modpack:#: { msg $chan This is a pack I put together myself designed specifically for building. If enough people ask, I may provide a download link at some point! }
+//on *:TEXT:!mp:#: { msg $chan This is a pack I put together myself designed specifically for building. If enough people ask, I may provide a download link at some point! }
+on *:TEXT:!schedule:#: { msg $chan I try to stream around 4 A.M. EST every day. Check to see what time that is for you here! http://goo.gl/pTJc8e }
+on *:TEXT:!tp:#: { msg $chan This is the Modded Faithful 32x32 Texturepack. Get it here! http://www.magnificentbastards.net/faithful/ }
+on *:TEXT:!texturepack:#: { msg $chan This is the Modded Faithful 32x32 Texturepack. Get it here! http://www.magnificentbastards.net/faithful/ }
+on *:TEXT:!youtube:#: { msg $chan I post videos to my YouTube channel every now and again. Check me out! https://www.youtube.com/user/toastacle }
+on *:TEXT:!yt:#: { msg $chan I post videos to my YouTube channel every now and again. Check me out! https://www.youtube.com/user/toastacle }
+on *:TEXT:!twitter:#: { msg $chan C'mon and follow me on the 'ol Twitter to stalk me and find out what's up with the stream! https://twitter.com/toastacle }
+on *:TEXT:why:#: { msg $chan #BecauseToastIsAwesome }
+
+
+
+alias -1 addPoints {
+  if {$1 !isnum) { echo 2 -st $1 is not a number. It need to be a number. | halt }
+  var %topic $+($chan,.,$nick)
+  var %points $calc($readini(Points.ini,%topic,Points) + $1)
+  writeini -n Points.ini %topic Points %points
+  return %points
+}
+alias -l lookUpPoints {
+  var %topic $+($chan,.,$nick)
+  var %points $readini(Points.ini,%topic,Points)
+  return %points
+}
+alias doaddpoints {
+  if ($3 !isnum) { echo 2 -st $3 is not a number. It needs to be a number. | halt }
+  var %topic $+($1,.,$2)
+  var %points $calc($readini(Points.ini,%topic,Points) + $3)
+  writeini -n Points.ini %topic Points %points
+  echo -a Added points for %topic
+}
+alias dorempoints {
+  var %topic $+($1,.,$2)
+  remini -n Points.ini %topic Points
+  echo -a Removed points for %topic
+}
+on *:text:!crumbs:#:{
+  if ((%floodpoints) || ($($+(%,floodpoints.,$nick),2))) { return }
+  set -u30 %floodpoints. $+ $nick On
+  msg # $nick has a total of $readini(Points.ini,$+(#,.,$nick),Points) Crumbs!
+}
+
+on $*:text:/!crumbs (add|remove)/Si:#:{
+  if ($nick isop #) {
+    if ($0 < 3) { msg # Insufficient parameters: Use !points <add|remove> <user> [number] | return }
+    writeini -n Points.ini $+(#,.,$3) Points $calc($readini(Points.ini,$+(#,.,$3),Points) $iif($2 == add,+,-) $iif($4 isnum,$4,1))
+    { msg $chan $3 now has a total of $readini(Points.ini,$+(#,.,$3),Points) Crumbs! }
+  }
+  else { msg $chan This command is only available to moderators. }
+}
+
+on !*:join:#:{
+  $+(.timerpoints.,#,.,$nick) 0 1200 add.pts $+(#,.,$nick)
+  add.pts $+(#,.,$nick)
+  set %nachrichten. $+ $nick = 0
+  if ($read(names.txt,nw,$nick) == $null) {
+    write names.txt $nick
+    msg $chan Welcome $nick to the channel! You are now earning Crumbs!
+  }
+}
+
+on !*:part:#:$+(.timerpoints.,#,.,$nick) off
+alias -l add.pts {
+  writeini -n Points.ini $1 Points $calc($readini(Points.ini,$1,Points) + 1)
+  if ((%floodpart) || ($($+(%,floodpart.,$nick),2))) { return }
+  set -u10 %floodpart On
+  set -u30 %floodpart. $+ $nick On
+}
+
+on *:TEXT:*:*: {
+  if (%nachrichten. [ $+ [ $nick ] ] == 4) {
+    set %nachrichten. $+ $nick 0
+    add.pts $+(#,.,$nick)}
+  }
+  else { inc %nachrichten. $+ $nick }
+  .timer $+ $nick 1 1200 unset %nachrichten. [ $+ [ $nick ] ]
+}
+
+on *:text:!rank:#: {
+  if ($readini(Points.ini,$+(#,.,$nick),Points) >= 0 && $readini(Points.ini,$+(#,.,$nick),Points <= 9) {
+    msg $chan $nick you are rank1 with $readini(Points.ini,$+(#,.,$nick),Points) points!
+  }
+  elseif ($readini(Points.ini,$+(#,.,$nick),Points) >= 10 && ($readini(Points.ini,$+(#,.,$nick),Points) <= 19)) {
+    msg $chan $nick you are rank2 with ($readini(Points.ini,$+(#,.,$nick),Points)) points!
+  }
+}
+
+on *:TEXT:!startnostream:#: {
+  if ($nick isop $chan) { 
+    msg $chan Message cycle is now starting.
+    .timerNostream 0 10 .play # D:\mIRCMessages\NoStream\NoStream.txt
+  }
+}
+
+on *:TEXT:!stopnostream:#: {
+  if ($nick isop #) { 
+    msg $chan Message cycle is now stopping.
+    .timerNostream off
+  }
+}
