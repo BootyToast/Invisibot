@@ -24,6 +24,7 @@ on *:TEXT:!tp:#: { msg $chan This is the Modded Faithful 32x32 Texturepack. Get 
 on *:TEXT:!texturepack:#: { msg $chan This is the Modded Faithful 32x32 Texturepack. Get it here! http://www.magnificentbastards.net/faithful/ }
 //Random Commands
 on *:TEXT:why:#: { msg $chan #BecauseToastIsAwesome }
+on *:TEXT:Why:#: { msg $chan #BecauseToastIsAwesome }
 on *:TEXT:!hug:#: { msg $chan $nick hugged $1, how nice! }
 on *:TEXT:!hugall:#: { msg $chan $nick hugged everyone in the chat room! How oh so very nice of them! }
 //Crumb - related commands
