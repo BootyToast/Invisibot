@@ -9,7 +9,7 @@ on *:TEXT:!youtube:#: { msg $chan I post videos to my YouTube channel every now 
 on *:TEXT:!yt:#: { msg $chan I post videos to my YouTube channel every now and again. Check me out! https://www.youtube.com/user/toastacle }
 on *:TEXT:!twitter:#: { msg $chan C'mon and follow me on the 'ol Twitter to stalk me and find out what's up with the stream! https://twitter.com/toastacle }
 //Game-related Commands
-on *:TEXT:!ip:#: { msg $chan The IP to the viewer and teamspeak server is BootyNation.playat.ch and running the Direwolf20 1.7.10 pack v1.0.1! Please be respectful. }
+on *:TEXT:!ip:#: { msg $chan The IP to the viewer and teamspeak server is BootyNation.playat.ch and running the Direwolf20 1.7.10 pack v1.0.2! Please be respectful. }
 on *:TEXT:!modpack:#: { msg $chan This pack is Technofirma on the FTB Launcher! [PACK CODE: technofirma] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-technofirma-terrafirmacraft-modpack.49502/ }
 on *:TEXT:!mp:#: { msg $chan This pack is Technofirma on the FTB Launcher! [PACK CODE: technofirma] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-technofirma-terrafirmacraft-modpack.49502/ }
 //on *:TEXT:!modpack:#: { msg $chan This pack is Purgatory on the FTB Launcher! [PACK CODE: purgatory] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-purgatory-mod-pack-v0-3-0-hqm-tech-quests-rf-updated-11-21-2014.52413/ }
