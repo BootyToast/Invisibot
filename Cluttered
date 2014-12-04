@@ -70,7 +70,7 @@ on *:text:!crumbs:#:{
   msg # $nick has a total of $readini(Points.ini,$+(#,.,$nick),Points) Crumbs!
 }
 on $*:text:!pay /Si:#:{
-  if ($4 isnum) {
+  if ($3 isnum) {
     if ($readini(Points.ini,$nick,Points) >= $3 {
 		writeini -n Points.ini $+(#,.,$nick) Points $calc($readini(Points.ini,$nick,Points)-$3)
 		writeini -n Points.ini $+(#,.,$2) Points $calc($readini(Points,ini,$nick,Points)+$3)
