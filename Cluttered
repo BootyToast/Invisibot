@@ -27,6 +27,9 @@ on *:TEXT:why:#: { msg $chan #BecauseToastIsAwesome }
 on *:TEXT:Why:#: { msg $chan #BecauseToastIsAwesome }
 on *:TEXT:!hug:#: { msg $chan $nick hugged $2, how nice! }
 on *:TEXT:!hugall:#: { msg $chan $nick hugged everyone in the chat room! How oh so very nice of them! }
+on *:TEXT:!xeno:#: { msg $chan Tesoman is awesome, he is very awesome }
+on *:TEXT:!kd:#: { msg $chan Tesoman is awesome, he is very awesome }
+on *:TEXT:!maria:#: { msg $chan Tesoman is awesome, he is very awesome }
 //Crumb - related commands
 on *:TEXT:!crumbs?:#: { 
   if ((%floodpart) || ($($+(%,floodpart.,$nick),2))) { return }
