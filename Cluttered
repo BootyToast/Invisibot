@@ -31,6 +31,13 @@ on *:TEXT:!xeno:#: { msg $chan Tesoman is awesome, he is very awesome }
 on *:TEXT:!kd:#: { msg $chan Tesoman is awesome, he is very awesome }
 on *:TEXT:!maria:#: { msg $chan Tesoman is awesome, he is very awesome }
 //Crumb - related commands
+on *:TEXT:!crumbspy /Si:#:{
+	if ($nick == isop){
+		msg $chan $2 has $readini(Points.ini,$3,Points) points!
+	else
+		msg $chan This command is mod only!
+	end
+end
 on *:TEXT:!crumbs?:#: { 
   if ((%floodpart) || ($($+(%,floodpart.,$nick),2))) { return }
   set -u10 %floodpart On
