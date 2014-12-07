@@ -33,7 +33,7 @@ on *:TEXT:!maria:#: { msg $chan Tesoman is awesome, he is very awesome }
 //Crumb - related commands
 on *:TEXT:!crumbspy /Si:#:{
 	if ($nick == isop){
-		msg $chan $2 has $readini(Points.ini,$3,Points) points!
+		msg $chan $2 has $readini(Points.ini,$3,Points) crumbs!
 	else
 		msg $chan This command is mod only!
 	end
@@ -77,7 +77,11 @@ alias dorempoints {
 on *:text:!crumbs:#:{
   if ((%floodpoints) || ($($+(%,floodpoints.,$nick),2))) { return }
   set -u30 %floodpoints. $+ $nick On
-  msg # $nick has a total of $readini(Points.ini,$+(#,.,$nick),Points) Crumbs!
+  if ($readini(Points.ini,$+(#,.,$nick),Points) != null) {
+    msg # $nick has a total of $readini(Points.ini,$+(#,.,$nick),Points) Crumbs!
+  else {
+    msg # $nick! Please wait a few seconds for me to notice you, so I don't freak out and have a Null-Pointer-Exception! THANKS!
+  }
 }
 on $*:text:!pay /Si:#:{
   if ($3 isnum) {
