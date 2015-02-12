@@ -328,3 +328,6 @@ on *:TEXT:!choobneedsmorecrumbs*:#:{
     
   }
 }
+on *:TEXT:!hug:#:{
+  msg $chan $nick just hugged $2! How sweet!
+}
