@@ -1,17 +1,20 @@
+
+
+
 //SOCIAL
 
 
-on *:TEXT:*!tweet:#: { msg $chan Tweet out the stream. Gimme some lovin'! http://ctt.ec/Lper0 }
+on *:TEXT:*!tweet*:#: { msg $chan Tweet out the stream. Gimme some lovin'! http://ctt.ec/Lper0 }
 
-on *:TEXT:*!schedule:#: { msg $chan I try to stream around 9 A.M. EST every day. }
+on *:TEXT:*!schedule*:#: { msg $chan I try to stream around 9 A.M. EST every day. }
 
-on *:TEXT:*!links*:#: { msg $chan Stay social! || Twitter: twitter.com/toastacle || Youtube: youtube.com/toastacle || }
+on *:TEXT:*!social*:#: { msg $chan Stay social! || Twitter: twitter.com/toastacle || Youtube: youtube.com/toastacle || }
 
 on *:TEXT:*!donate*:#: { msg $chan This is a donation link... https://www.twitchalerts.com/donate/bootytoast }
 
 on $*:text:/(!yt|!youtube)$/i:#: { msg $chan I post videos to my YouTube channel every now and again. Check me out! https://www.youtube.com/user/toastacle }
 
-on *:TEXT:*!twitter:#: { msg $chan C'mon and follow me on the 'ol Twitter to stalk me and find out what's up with the stream! https://twitter.com/toastacle }
+on *:TEXT:*!twitter*:#: { msg $chan C'mon and follow me on the 'ol Twitter to stalk me and find out what's up with the stream! https://twitter.com/toastacle }
 
 on *:TEXT:*!love*:#: {
   if ($nick isop #) {
@@ -20,7 +23,7 @@ on *:TEXT:*!love*:#: {
 
 }
 
-on *:TEXT:*!song:#:{ 
+on *:TEXT:*!song*:#:{ 
 
   .play # D:/Livestream/Stream/Audio/Songs.txt
 
@@ -38,6 +41,16 @@ on *:TEXT:*!song:#:{
 on *:TEXT:!crumbs?:#: { 
 
   if ($nick isop #) { msg $chan Crumbs are the points system for this channel. Use crumbs to play interactive commands OR earn 50 for a spot on the whitelisted server. 20 mins = 1 crumb. }
+
+}
+
+on $*:text:/!checkcrumbs /Si:#:{
+
+  if ($nick isop #) {
+
+    msg # $2 has $readini(Points.ini,$+(#,.,$2),Points) crumbs!
+
+  }
 
 }
 
@@ -65,7 +78,7 @@ on $*:text:/!crumbs (add|remove)/Si:#:{
 //SOUNDS
 
 
-on *:TEXT:*!commands:#: { msg $chan The list of interactive commands can be found here! http://pastebin.com/fhwFu1TR }
+on *:TEXT:*!commands*:#: { msg $chan The list of interactive commands can be found here! http://pastebin.com/fhwFu1TR }
 
 on $*:text:/(!banana|!bwah|!bwah2|!bwah3|!byeah|!chocolate|!creeper|!cry|!damn|!dude|!haha|!hubba|!hwhat|!iloveyou|!IMDABES|!imrich|!ineedit|!leedle|!man|!meep|!noscoped|!okay|!ouh|!pew|!porkchop|!propane|!reggae|!squidward|!val|!weed|!what|!yeah)$/i:#: { if ($readini(Points.ini,$+(#,.,$nick),Points) > 0) {
 
@@ -75,7 +88,7 @@ on $*:text:/(!banana|!bwah|!bwah2|!bwah3|!byeah|!chocolate|!creeper|!cry|!damn|!
 
 }
 
-on *:TEXT:*!readchat:#: {
+on *:TEXT:*!readchat*:#: {
 
   if ($nick isop #) { if ($nick != XenosLastStand) { splay -w D:/MyMusic/Sounds/!readchat.wav  }
 
@@ -91,7 +104,7 @@ on *:TEXT:*!readchat:#: {
 //PLAY
 
 
-on *:TEXT:*!dur:#:{ 
+on *:TEXT:*!dur*:#:{ 
 
   if ($readini(Points.ini,$+(#,.,$nick),Points) > 1) {
 
@@ -109,7 +122,7 @@ on *:TEXT:*!dur:#:{
 }
 
 
-on *:TEXT:*!dumb:#:{ 
+on *:TEXT:*!dumb*:#:{ 
 
   if ($readini(Points.ini,$+(#,.,$nick),Points) > 3) {
 
@@ -145,51 +158,26 @@ on *:TEXT:*!dumb:#:{
 //ABOUT GAME
 
 
-on *:TEXT:*!ip:#: { msg $chan The viewer server is a Sky Factory 2 whitelisted server! Earn 50 Crumbs to be considered! Type "!crumbs" to view your Crumbs! }
+on *:TEXT:*!ip*:#: { msg $chan The viewer server is a Sky Factory 2 whitelisted server! Earn 50 Crumbs to be considered! Type "!crumbs" to view your Crumbs! }
 
-//on *:TEXT:*!map:#: { msg $chan This map is Sea of Flame II from Vechs' Super Hostile map series. Find out more information here! http://www.minecraftforum.net/forums/mapping-and-modding/maps/1454714-ctm-collection-vechs-super-hostile-series }
+//on *:TEXT:*!map*:#: { msg $chan This map is Sea of Flame II from Vechs' Super Hostile map series. Find out more information here! http://www.minecraftforum.net/forums/mapping-and-modding/maps/1454714-ctm-collection-vechs-super-hostile-series }
 
-//on *:TEXT:*!modpack:#: { msg $chan This pack is vanilla Minecraft by Mojang on the Minecraft launcher! [PACK CODE: Kappa] Find out information here! http://www.Minecraft.net }
-//on *:TEXT:*!mp:#: { msg $chan This pack is vanilla Minecraft by Mojang on the Minecraft launcher! [PACK CODE: Kappa] Find out information here! http://www.Minecraft.net }
+//on $*:text:/(!mp|!modpack|!pack|!mods|!mod)$/i:#: { msg $chan This pack is vanilla Minecraft by Mojang on the Minecraft launcher! [PACK CODE: Kappa] Find out information here! http://www.Minecraft.net }
 
-//ME^3
-//on *:TEXT:*!modpack:#: { msg $chan This pack is ME^3 by parcel31u on the FTB launcher! Find out information here! http://forum.feed-the-beast.com/threads/1-6-4-material-energy-3-jampacked-hqm-ctm-beta.48913/ }
-//on *:TEXT:*!mp:#: { msg $chan This pack is ME^3 by parcel31u on the FTB launcher! Find out information here! http://forum.feed-the-beast.com/threads/1-6-4-material-energy-3-jampacked-hqm-ctm-beta.48913/ }
+//on $*:text:/(!mp|!modpack|!pack|!mods|!mod)$/i:#: { msg $chan This pack is ME^4 by parcel31u on the FTB launcher! Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-material-energy-4.57967/ }
 
-//ME^4
-//on *:TEXT:*!modpack:#: { msg $chan This pack is ME^4 by parcel31u on the FTB launcher! Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-material-energy-4.57967/ }
-//on *:TEXT:*!mp:#: { msg $chan This pack is ME^4 by parcel31u on the FTB launcher! Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-material-energy-4.57967/ }
+//on $*:text:/(!mp|!modpack|!pack|!mods|!mod)$/i:#: { msg $chan This pack is the Direwolf20 1.7.10 pack on the FTB Launcher! Find out information here! http://forum.feed-the-beast.com/forum/direwolf20-1-7-10.175/ }
 
+on $*:text:/(!mp|!modpack|!pack|!mods|!mod)$/i:#: { msg $chan This pack is FTB Infinity on the FTB Launcher! }
 
-//on *:TEXT:*!modpack:#: { msg $chan This pack is Technofirma on the FTB Launcher! [PACK CODE: technofirma] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-technofirma-terrafirmacraft-modpack.49502/ }
-//on *:TEXT:*!mp:#: { msg $chan This pack is Technofirma on the FTB Launcher! [PACK CODE: technofirma] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-technofirma-terrafirmacraft-modpack.49502/ }
+//on $*:text:/(!mp|!modpack|!pack|!mods|!mod)$/i:#: { msg $chan This pack is The Dark Trilogy on the FTB Launcher 3rd party section! Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-the-dark-trilogy-public-beta.51854/ }
 
-//on *:TEXT:*!modpack:#: { msg $chan This pack is Purgatory on the FTB Launcher! [PACK CODE: purgatory] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-purgatory-mod-pack-v0-3-0-hqm-tech-quests-rf-updated-11-21-2014.52413/ }
-//on *:TEXT:*!mp:#: { msg $chan This pack is Purgatory on the FTB Launcher! [PACK CODE: purgatory] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-purgatory-mod-pack-v0-3-0-hqm-tech-quests-rf-updated-11-21-2014.52413/ }
+//on $*:text:/(!mp|!modpack|!pack|!mods|!mod)$/i:#: { msg $chan This is Sky Factory 2 on the ATLauncher! }
 
-//on *:TEXT:*!modpack:#: { msg $chan This pack is Clouds of Darkness on the FTB Launcher! [PACK CODE: darkness] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-clouds-of-darkness-v1-1-3-softcore-hardcore-hqm-adventure-skyblock.49861/ }
-//on *:TEXT:*!mp:#: { msg $chan This pack is Clouds of Darkness on the FTB Launcher! [PACK CODE: darkness] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-clouds-of-darkness-v1-1-3-softcore-hardcore-hqm-adventure-skyblock.49861/ }
+//on $*:text:/(!mp|!modpack|!pack|!mods|!mod)$/i:#: { msg $chan This is MadPack 2 on the ATLauncher! }
 
-//on *:TEXT:*!modpack:#: { msg $chan This pack is the Direwolf20 1.7.10 pack on the FTB Launcher! Find out information here! http://forum.feed-the-beast.com/forum/direwolf20-1-7-10.175/ }
-//on *:TEXT:*!mp:#: { msg $chan This pack is the Direwolf20 1.7.10 pack on the FTB Launcher! Find out information here! http://forum.feed-the-beast.com/forum/direwolf20-1-7-10.175/ }
+on $*:text:/(!tp|!texture|!texturepack|!resource|!resourcepack)$/i:#: { msg $chan Sometimes I use the Modded Faithful 32x32 Texturepack. Get it here! http://www.magnificentbastards.net/faithful/ }
 
-on *:TEXT:*!modpack:#: { msg $chan This pack is FTB Infinity on the FTB Launcher! }
-on *:TEXT:*!mp:#: { msg $chan This pack is FTB Infinity on the FTB Launcher! }
-
-//on *:TEXT:*!modpack:#: { msg $chan This pack is The Dark Trilogy on the FTB Launcher 3rd party section! Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-the-dark-trilogy-public-beta.51854/ }
-//on *:TEXT:*!mp:#: { msg $chan This pack is The Dark Trilogy on the FTB Launcher 3rd party section! Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-the-dark-trilogy-public-beta.51854/ }
-
-//on *:TEXT:*!modpack:#: { msg $chan This is a pack I put together myself designed specifically for building. If enough people ask, I may provide a download link at some point! }
-//on *:TEXT:*!mp:#: { msg $chan This is a pack I put together myself designed specifically for building. If enough people ask, I may provide a download link at some point! }
-
-//on *:TEXT:*!modpack:#: { msg $chan This is Sky Factory 2 on the ATLauncher! }
-//on *:TEXT:*!mp:#: { msg $chan This is Sky Factory 2 on the ATLauncher! }
-
-//on *:TEXT:*!modpack:#: { msg $chan This is MadPack 2 on the ATLauncher! }
-//on *:TEXT:*!mp:#: { msg $chan This is MadPack 2 on the ATLauncher! }
-
-on *:TEXT:*!tp:#: { msg $chan This is the Modded Faithful 32x32 Texturepack. Get it here! http://www.magnificentbastards.net/faithful/ }
-//on *:TEXT:*!texturepack:#: { msg $chan This is the Modded Faithful 32x32 Texturepack. Get it here! http://www.magnificentbastards.net/faithful/ }
 
 
 
