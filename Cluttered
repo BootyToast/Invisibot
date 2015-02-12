@@ -344,3 +344,9 @@ on *:TEXT:!huggles:#:{
 }
 on *:TEXT:!huggledef:#:{
   msg $chan A huggle is hugging and snuggling at the same time... very cute.
+}
+on *:TEXT:!lurk:#:{
+  color BlueViolet
+  me $nick lurks in the shadows...
+  color HotPink
+}
