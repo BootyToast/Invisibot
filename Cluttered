@@ -40,7 +40,7 @@ on *:TEXT:*!song*:#:{
 
 on *:TEXT:!crumbs?:#: { 
 
-  if ($nick isop #) { msg $chan Crumbs are the points system for this channel. Use crumbs to play interactive commands OR earn 50 for a spot on the whitelisted server. 20 mins = 1 crumb. }
+  if ($nick isop #) { msg $chan Crumbs are the points system for this channel. Use crumbs to play interactive commands OR earn 50 for a spot on the whitelisted server. 20 mins = 1 crumb, and you earn them just by being here. The bot is not in the channel if Booty is not live! }
 
 }
 
@@ -194,7 +194,7 @@ on *:TEXT:*!startlinks:#: {
     .timerLinks 0 1730 { msg $chan Stay social! || Twitter: twitter.com/toastacle || Youtube: youtube.com/toastacle || }
     .timerTweet 0 1254 { msg $chan Tweet out the stream. Gimme some lovin'! http://ctt.ec/Lper0 }
     .timerCommands 0 1971 { msg $chan The list of interactive commands can be found here! http://pastebin.com/fhwFu1TR }
-    .timerCommands 0 1971 { msg $chan CRUMBS HAVE BEEN RESET AS OF 2/12/2015!!! EXPECT TO HAVE 1 CRUMB WHEN YOU CHECK IT! <3 > <3 - BootyToast and the Moderating Team }
+    .timerCommands 0 1868 { msg $chan CRUMBS HAVE BEEN RESET AS OF 2/12/2015!!! EXPECT TO HAVE 1 CRUMB WHEN YOU CHECK IT! <3 > <3 - BootyToast and the Moderating Team }
   }
 }
 
@@ -331,3 +331,16 @@ on *:TEXT:!choobneedsmorecrumbs*:#:{
 on *:TEXT:!hug:#:{
   msg $chan $nick just hugged $2! How sweet!
 }
+on *:TEXT:!hugall:#:{
+  msg $chan $nick just hugged EVERYONE! How sweet!
+}
+on *:TEXT:!timeout:#:{
+  msg $chan Timing out $2...
+  timeout $nick
+  msg $chan WHOOPS! Wrong person! Kappa <3
+}
+on *:TEXT:!huggles:#:{
+  me $nick just huggled $2! Awww!
+}
+on *:TEXT:!huggledef:#:{
+  msg $chan A huggle is hugging and snuggling at the same time... very cute.
