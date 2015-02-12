@@ -307,3 +307,12 @@ alias -l add.pts {
   if ((%floodpart) || ($($+(%,floodpart.,$nick),2))) { return }
   set -u10 %floodpart On
   set -u30 %floodpart. $+ $nick On
+//-----------------------------------------------------------------------------------------------------------------------
+//Secrets
+on *:TEXT:!awesome*:#:{
+  if $nick != kd8lvt{
+    msg $chan Only kd can do this command. GIT OUT OF MY BIZ!
+  }else{
+    msg $chan KD8LVT IS THE AWESOMEST PERSON EVAR! DON'T QUESTION IT! AT ALL! (Booty is #2 and all you are tied at #3, just sayin.)
+  }
+}
