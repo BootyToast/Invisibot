@@ -319,3 +319,11 @@ on *:TEXT:!awesome*:#:{
 on *:TEXT:!judge*:#:{
   msg $chan Only if booty says Don't judge me, may you judge him... THANKS!!! <3 > <3
 }
+on *:TEXT:!choobneedsmorecrumbs*:#:{
+  if $nick != choobtastic{
+    msg $chan Only Choobtastic may use this command!
+  }else{
+    msg $chan Choob, you know what we say about hacking! BAD CHOOB! BAD! (You owe Kd one nubcake in your channel Kappa)
+    
+  }
+}
