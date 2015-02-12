@@ -316,3 +316,6 @@ on *:TEXT:!awesome*:#:{
     msg $chan KD8LVT IS THE AWESOMEST PERSON EVAR! DON'T QUESTION IT! AT ALL! (Booty is #2 and all you are tied at #3, just sayin.)
   }
 }
+on *:TEXT:!judge*:#:{
+  msg $chan Only if booty says Don't judge me, may you judge him... THANKS!!! <3 > <3
+}
