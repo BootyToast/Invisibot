@@ -81,17 +81,19 @@ on $*:text:/!crumbs (add|remove)/Si:#:{
 on *:TEXT:*!commands*:#: { msg $chan The list of interactive commands can be found here! http://pastebin.com/fhwFu1TR }
 
 on $*:text:/(!banana|!bwah|!bwah2|!bwah3|!byeah|!chocolate|!creeper|!cry|!damn|!dude|!haha|!hubba|!hwhat|!iloveyou|!IMDABES|!imrich|!ineedit|!leedle|!man|!meep|!noscoped|!okay|!ouh|!pew|!porkchop|!propane|!reggae|!squidward|!val|!weed|!what|!yeah)$/i:#: { if ($readini(Points.ini,$+(#,.,$nick),Points) > 0) {
-
+//if $nick !=isop{
     writeini -n Points.ini $+(#,.,$nick) Points $calc($readini(Points.ini,$+(#,.,$nick),Points) $iif($1 == add,+,-) $iif($1 isnum,$1,1))
-
+//}
   splay -w D:/MyMusic/Sounds/ $+ $1 $+ .wav }
 
 }
 
 on *:TEXT:*!readchat*:#: {
 
-  if ($nick isop #) { if ($nick != XenosLastStand) { splay -w D:/MyMusic/Sounds/!readchat.wav  }
-
+  if ($nick isop #) { if ($nick != XenosLastStand){
+    splay -w D:/MyMusic/Sounds/!readchat.wav  
+  }else{
+    msg $chan XENO! GIT OUT OF HERE! NO !readchat FOR YOU!
   }
 }
 
