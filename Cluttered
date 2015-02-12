@@ -1,67 +1,292 @@
-on *:TEXT:hello:#: { msg $chan Hey there, $nick }
-on *:TEXT:hi:#: { msg $chan Hey there, $nick }
-on *:TEXT:hey:#: { msg $chan Hey there, $nick }
-on *:TEXT:!bootysongs:#: { msg $chan Type "!songrequest [youtube video link]" in chat to request a song! }
+//SOCIAL
 
-//Utility Commands
-on *:TEXT:!schedule:#: { msg $chan I try to stream around 4 A.M. EST every day. Check to see what time that is for you here! http://goo.gl/pTJc8e }
-on *:TEXT:!youtube:#: { msg $chan I post videos to my YouTube channel every now and again. Check me out! https://www.youtube.com/user/toastacle }
-on *:TEXT:!yt:#: { msg $chan I post videos to my YouTube channel every now and again. Check me out! https://www.youtube.com/user/toastacle }
-on *:TEXT:!twitter:#: { msg $chan C'mon and follow me on the 'ol Twitter to stalk me and find out what's up with the stream! https://twitter.com/toastacle }
-//Game-related Commands
-on *:TEXT:!ip:#: { msg $chan The IP to the viewer and teamspeak server is BootyNation.playat.ch and running the Direwolf20 1.7.10 pack v1.0.2! Please be respectful. }
-on *:TEXT:!modpack:#: { msg $chan This pack is Technofirma on the FTB Launcher! [PACK CODE: technofirma] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-technofirma-terrafirmacraft-modpack.49502/ }
-on *:TEXT:!mp:#: { msg $chan This pack is Technofirma on the FTB Launcher! [PACK CODE: technofirma] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-technofirma-terrafirmacraft-modpack.49502/ }
-//on *:TEXT:!modpack:#: { msg $chan This pack is Purgatory on the FTB Launcher! [PACK CODE: purgatory] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-purgatory-mod-pack-v0-3-0-hqm-tech-quests-rf-updated-11-21-2014.52413/ }
-//on *:TEXT:!mp:#: { msg $chan This pack is Purgatory on the FTB Launcher! [PACK CODE: purgatory] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-purgatory-mod-pack-v0-3-0-hqm-tech-quests-rf-updated-11-21-2014.52413/ }
-//on *:TEXT:!modpack:#: { msg $chan This pack is Clouds of Darkness on the FTB Launcher! [PACK CODE: darkness] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-clouds-of-darkness-v1-1-2-stable-ultra-hardcore-hqm-adventure-skyblock.49861/page-23 }
-//on *:TEXT:!mp:#: { msg $chan This pack is Clouds of Darkness on the FTB Launcher! [PACK CODE: darkness] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-clouds-of-darkness-v1-1-2-stable-ultra-hardcore-hqm-adventure-skyblock.49861/page-23 }
-//on *:TEXT:!modpack:#: { msg $chan This pack is the Direwolf20 1.7.10 pack on the FTB Launcher! Find out information here! http://forum.feed-the-beast.com/forum/direwolf20-1-7-10.175/ }
-//on *:TEXT:!mp:#: { msg $chan This pack is the Direwolf20 1.7.10 pack on the FTB Launcher! Find out information here! http://forum.feed-the-beast.com/forum/direwolf20-1-7-10.175/ }
-//on *:TEXT:!modpack:#: { msg $chan This is a pack I put together myself designed specifically for building. If enough people ask, I may provide a download link at some point! }
-//on *:TEXT:!mp:#: { msg $chan This is a pack I put together myself designed specifically for building. If enough people ask, I may provide a download link at some point! }
-on *:TEXT:!tp:#: { msg $chan This is the Modded Faithful 32x32 Texturepack. Get it here! http://www.magnificentbastards.net/faithful/ }
-on *:TEXT:!texturepack:#: { msg $chan This is the Modded Faithful 32x32 Texturepack. Get it here! http://www.magnificentbastards.net/faithful/ }
-//Random Commands
-on *:TEXT:why:#: { msg $chan #BecauseToastIsAwesome }
-on *:TEXT:Why:#: { msg $chan #BecauseToastIsAwesome }
-on *:TEXT:!hug:#: { msg $chan $nick hugged $2, how nice! }
-on *:TEXT:!hugall:#: { msg $chan $nick hugged everyone in the chat room! How oh so very nice of them! }
-on *:TEXT:!xeno:#: { msg $chan Tesoman is awesome, he is very awesome }
-on *:TEXT:!kd:#: { msg $chan Tesoman is awesome, he is very awesome }
-on *:TEXT:!maria:#: { msg $chan Tesoman is awesome, he is very awesome }
-//Crumb - related commands
-on *:TEXT:!crumbspy /Si:#:{
-	if ($nick == isop){
-		msg $chan $2 has $readini(Points.ini,$3,Points) crumbs!
-	else
-		msg $chan This command is mod only!
-	end
-end
+
+on *:TEXT:*!tweet:#: { msg $chan Tweet out the stream. Gimme some lovin'! http://ctt.ec/Lper0 }
+
+on *:TEXT:*!schedule:#: { msg $chan I try to stream around 9 A.M. EST every day. }
+
+on *:TEXT:*!links*:#: { msg $chan Stay social! || Twitter: twitter.com/toastacle || Youtube: youtube.com/toastacle || }
+
+on *:TEXT:*!donate*:#: { msg $chan This is a donation link... https://www.twitchalerts.com/donate/bootytoast }
+
+on $*:text:/(!yt|!youtube)$/i:#: { msg $chan I post videos to my YouTube channel every now and again. Check me out! https://www.youtube.com/user/toastacle }
+
+on *:TEXT:*!twitter:#: { msg $chan C'mon and follow me on the 'ol Twitter to stalk me and find out what's up with the stream! https://twitter.com/toastacle }
+
+on *:TEXT:*!love*:#: {
+  if ($nick isop #) {
+    msg $chan Go show this amazing streamer some love! http://www.twitch.tv/ $+ $2 $+  
+  }
+
+}
+
+on *:TEXT:*!song:#:{ 
+
+  .play # D:/Livestream/Stream/Audio/Songs.txt
+
+}
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//CRUMBS
+
+
 on *:TEXT:!crumbs?:#: { 
-  if ((%floodpart) || ($($+(%,floodpart.,$nick),2))) { return }
-  set -u10 %floodpart On
-  set -u30 %floodpart. $+ $nick On
-  msg $chan Crumbs are the points system for this channel. When the rank system is implemented, certain ranks will earn you different benefits such as a higher chance at winning raffles, being accepted onto whitelist servers, etc. Earn crumbs by being here and being active in chat. 
+
+  if ($nick isop #) { msg $chan Crumbs are the points system for this channel. Use crumbs to play interactive commands OR earn 50 for a spot on the whitelisted server. 20 mins = 1 crumb. }
+
 }
-on *:TEXT:!ranks?:#: {
-  if ((%floodpart) || ($($+(%floodpart.,$nick),2))) { return }
-  set -u10 %floodpart On
-  set -u30 %floodpart. $+ $nick On
-  msg $chan Hey, $nick - Ranks are a (currently buggy) sort of system that basically help Toast figure out who has been in chat, actively, the longest... They also, in the future will be taken into account for rewards! These include being allowed on a whitelisted server (currently in the works) as well as a (slightly) higher chance at winning raffles! 
+
+on *:TEXT:*!crumbs:#:{
+
+  msg # $nick has $readini(Points.ini,$+(#,.,$nick),Points) crumbs!
+
 }
+
+on $*:text:/!crumbs (add|remove)/Si:#:{
+
+  if ($nick isop #) { if ($nick == BootyToast) { 
+      writeini -n Points.ini $+(#,.,$3) Points $calc($readini(Points.ini,$+(#,.,$3),Points) $iif($2 == add,+,-) $iif($4 isnum,$4,1))
+    msg $chan $3 now has $readini(Points.ini,$+(#,.,$3),Points) total crumbs.  }
+
+  }
+}
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//SOUNDS
+
+
+on *:TEXT:*!commands:#: { msg $chan The list of interactive commands can be found here! http://pastebin.com/fhwFu1TR }
+
+on $*:text:/(!banana|!bwah|!bwah2|!bwah3|!byeah|!chocolate|!creeper|!cry|!damn|!dude|!haha|!hubba|!hwhat|!iloveyou|!IMDABES|!imrich|!ineedit|!leedle|!man|!meep|!noscoped|!okay|!ouh|!pew|!porkchop|!propane|!reggae|!squidward|!val|!weed|!what|!yeah)$/i:#: { if ($readini(Points.ini,$+(#,.,$nick),Points) > 0) {
+
+    writeini -n Points.ini $+(#,.,$nick) Points $calc($readini(Points.ini,$+(#,.,$nick),Points) $iif($1 == add,+,-) $iif($1 isnum,$1,1))
+
+  splay -w D:/MyMusic/Sounds/ $+ $1 $+ .wav }
+
+}
+
+on *:TEXT:*!readchat:#: {
+
+  if ($nick isop #) { if ($nick != XenosLastStand) { splay -w D:/MyMusic/Sounds/!readchat.wav  }
+
+  }
+}
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//PLAY
+
+
+on *:TEXT:*!dur:#:{ 
+
+  if ($readini(Points.ini,$+(#,.,$nick),Points) > 1) {
+
+    .timerDurr 1 0.5 { /yfloodfill D:\Photos\bootytoast\Pictures\Stream\durr.jpg }
+
+    .timerGame 1 0.6 { /sendkey +(`) }  
+
+    .timerClose 1 1.5 { /close -@durr.jpg }
+
+    .timerDurrs 1 0.5 { splay -w D:/MyMusic/Sounds/!durr3.wav }
+
+    writeini -n Points.ini $+(#,.,$nick) Points $calc($readini(Points.ini,$+(#,.,$nick),Points) $iif($1 == add,+,-) $iif($1 isnum,$1,2))
+
+  }
+}
+
+
+on *:TEXT:*!dumb:#:{ 
+
+  if ($readini(Points.ini,$+(#,.,$nick),Points) > 3) {
+
+    .timerKarate 1 0.5 { /yfloodfill D:\Photos\bootytoast\Pictures\Stream\karate.jpg }
+    .timerKarate2 1 2.5 { /yfloodfill D:\Photos\bootytoast\Pictures\Stream\karate2.jpg }
+    .timerKarate3 1 4.5 { /yfloodfill D:\Photos\bootytoast\Pictures\Stream\karate3.jpg }
+
+    .timerClosekarate 1 1.5 { /close -@karate.jpg }
+    .timerClosekarate2 1 3.5 { /close -@karate2.jpg }
+    .timerClosekarate3 1 5.5 { /close -@karate3.jpg }
+
+    .timerKaratesound 1 0.5 { splay -w D:/MyMusic/Sounds/karate.wav }
+    .timerKaratesound2 1 2.5 { splay -w D:/MyMusic/Sounds/karate2.wav }
+    .timerKaratesound3 1 4.5 { splay -w D:/MyMusic/Sounds/karate3.wav }
+
+    .timerGamekarate 1 0.6 { /sendkey +(`) }
+    .timerGamekarate2 1 2.6 { /sendkey +(`) }
+    .timerGamekarate3 1 4.6 { /sendkey +(`) }
+
+
+
+    writeini -n Points.ini $+(#,.,$nick) Points $calc($readini(Points.ini,$+(#,.,$nick),Points) $iif($1 == add,+,-) $iif($1 isnum,$1,4))
+
+  }
+}
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//ABOUT GAME
+
+
+on *:TEXT:*!ip:#: { msg $chan The viewer server is a Sky Factory 2 whitelisted server! Earn 50 Crumbs to be considered! Type "!crumbs" to view your Crumbs! }
+
+//on *:TEXT:*!map:#: { msg $chan This map is Sea of Flame II from Vechs' Super Hostile map series. Find out more information here! http://www.minecraftforum.net/forums/mapping-and-modding/maps/1454714-ctm-collection-vechs-super-hostile-series }
+
+//on *:TEXT:*!modpack:#: { msg $chan This pack is vanilla Minecraft by Mojang on the Minecraft launcher! [PACK CODE: Kappa] Find out information here! http://www.Minecraft.net }
+//on *:TEXT:*!mp:#: { msg $chan This pack is vanilla Minecraft by Mojang on the Minecraft launcher! [PACK CODE: Kappa] Find out information here! http://www.Minecraft.net }
+
+//ME^3
+//on *:TEXT:*!modpack:#: { msg $chan This pack is ME^3 by parcel31u on the FTB launcher! Find out information here! http://forum.feed-the-beast.com/threads/1-6-4-material-energy-3-jampacked-hqm-ctm-beta.48913/ }
+//on *:TEXT:*!mp:#: { msg $chan This pack is ME^3 by parcel31u on the FTB launcher! Find out information here! http://forum.feed-the-beast.com/threads/1-6-4-material-energy-3-jampacked-hqm-ctm-beta.48913/ }
+
+//ME^4
+//on *:TEXT:*!modpack:#: { msg $chan This pack is ME^4 by parcel31u on the FTB launcher! Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-material-energy-4.57967/ }
+//on *:TEXT:*!mp:#: { msg $chan This pack is ME^4 by parcel31u on the FTB launcher! Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-material-energy-4.57967/ }
+
+
+//on *:TEXT:*!modpack:#: { msg $chan This pack is Technofirma on the FTB Launcher! [PACK CODE: technofirma] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-technofirma-terrafirmacraft-modpack.49502/ }
+//on *:TEXT:*!mp:#: { msg $chan This pack is Technofirma on the FTB Launcher! [PACK CODE: technofirma] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-technofirma-terrafirmacraft-modpack.49502/ }
+
+//on *:TEXT:*!modpack:#: { msg $chan This pack is Purgatory on the FTB Launcher! [PACK CODE: purgatory] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-purgatory-mod-pack-v0-3-0-hqm-tech-quests-rf-updated-11-21-2014.52413/ }
+//on *:TEXT:*!mp:#: { msg $chan This pack is Purgatory on the FTB Launcher! [PACK CODE: purgatory] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-purgatory-mod-pack-v0-3-0-hqm-tech-quests-rf-updated-11-21-2014.52413/ }
+
+//on *:TEXT:*!modpack:#: { msg $chan This pack is Clouds of Darkness on the FTB Launcher! [PACK CODE: darkness] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-clouds-of-darkness-v1-1-3-softcore-hardcore-hqm-adventure-skyblock.49861/ }
+//on *:TEXT:*!mp:#: { msg $chan This pack is Clouds of Darkness on the FTB Launcher! [PACK CODE: darkness] Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-clouds-of-darkness-v1-1-3-softcore-hardcore-hqm-adventure-skyblock.49861/ }
+
+//on *:TEXT:*!modpack:#: { msg $chan This pack is the Direwolf20 1.7.10 pack on the FTB Launcher! Find out information here! http://forum.feed-the-beast.com/forum/direwolf20-1-7-10.175/ }
+//on *:TEXT:*!mp:#: { msg $chan This pack is the Direwolf20 1.7.10 pack on the FTB Launcher! Find out information here! http://forum.feed-the-beast.com/forum/direwolf20-1-7-10.175/ }
+
+on *:TEXT:*!modpack:#: { msg $chan This pack is FTB Infinity on the FTB Launcher! }
+on *:TEXT:*!mp:#: { msg $chan This pack is FTB Infinity on the FTB Launcher! }
+
+//on *:TEXT:*!modpack:#: { msg $chan This pack is The Dark Trilogy on the FTB Launcher 3rd party section! Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-the-dark-trilogy-public-beta.51854/ }
+//on *:TEXT:*!mp:#: { msg $chan This pack is The Dark Trilogy on the FTB Launcher 3rd party section! Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-the-dark-trilogy-public-beta.51854/ }
+
+//on *:TEXT:*!modpack:#: { msg $chan This is a pack I put together myself designed specifically for building. If enough people ask, I may provide a download link at some point! }
+//on *:TEXT:*!mp:#: { msg $chan This is a pack I put together myself designed specifically for building. If enough people ask, I may provide a download link at some point! }
+
+//on *:TEXT:*!modpack:#: { msg $chan This is Sky Factory 2 on the ATLauncher! }
+//on *:TEXT:*!mp:#: { msg $chan This is Sky Factory 2 on the ATLauncher! }
+
+//on *:TEXT:*!modpack:#: { msg $chan This is MadPack 2 on the ATLauncher! }
+//on *:TEXT:*!mp:#: { msg $chan This is MadPack 2 on the ATLauncher! }
+
+on *:TEXT:*!tp:#: { msg $chan This is the Modded Faithful 32x32 Texturepack. Get it here! http://www.magnificentbastards.net/faithful/ }
+//on *:TEXT:*!texturepack:#: { msg $chan This is the Modded Faithful 32x32 Texturepack. Get it here! http://www.magnificentbastards.net/faithful/ }
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//TIMERS
+
+
+on *:TEXT:*!startlinks:#: {
+  if ($nick isop #) {
+    msg $chan Link timers are'a startin'!
+    .timerLinks 0 1730 { msg $chan Stay social! || Twitter: twitter.com/toastacle || Youtube: youtube.com/toastacle || }
+    .timerTweet 0 1254 { msg $chan Tweet out the stream. Gimme some lovin'! http://ctt.ec/Lper0 }
+    .timerCommands 0 1971 { msg $chan The list of interactive commands can be found here! http://pastebin.com/fhwFu1TR }
+  }
+}
+
+on *:TEXT:*!stoplinks:#: {
+  if ($nick isop #) {
+    msg $chan Link timers are'a stoppin'!
+    .timerTweet off
+    .timerLinks off
+    .timerCommands off
+  }
+}
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//HOTKEY SCRIPT
+
+
+alias sendkey {
+  set -l %name sendkeys $+ $ticks
+  .comopen %name WScript.Shell
+  .comclose %name $com(%name,SendKeys,3,bstr,$1-)
+}
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//PLAY SCRIPT
+
+
+alias yfloodfill {
+  var %img $iif($1 != $null, $1-, $sfile($mircdir, Please select an image.))
+  if (%img == $null) {
+    echo -a You didn't select an image.
+    return
+  }
+  var %h $pic(%img).height
+  var %w $pic(%img).width
+  var %title $+($chr(64),$gettok(%img, -1, 92))
+  .window -pdok0 %title -1 -1 %w %h
+  var %c 1
+  var %ticks $ticks
+  var %img $qt(%img)
+  while (%c <= %h) {
+    titlebar %title :: %c lines, $perc(%c, %h, 1)
+    ;        whilefix
+    drawpic -sct %title 1 0 %c %w %h 0 %c %w 1 %img
+    inc %c
+  }
+  titlebar %title
+}
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//CRUMBS SCRIPT
+
+
 alias -1 addPoints {
-  if {$1 !isnum) { echo 2 -st $1 is not a number. It needs to be a number. | halt }
+  if {$1 !isnum) { echo 2 -st $1 is not a number. It need to be a number. | halt }
   var %topic $+($chan,.,$nick)
   var %points $calc($readini(Points.ini,%topic,Points) + $1)
   writeini -n Points.ini %topic Points %points
   return %points
 }
+
 alias -l lookUpPoints {
   var %topic $+($chan,.,$nick)
   var %points $readini(Points.ini,%topic,Points)
   return %points
 }
+
 alias doaddpoints {
   if ($3 !isnum) { echo 2 -st $3 is not a number. It needs to be a number. | halt }
   var %topic $+($1,.,$2)
@@ -69,38 +294,13 @@ alias doaddpoints {
   writeini -n Points.ini %topic Points %points
   echo -a Added points for %topic
 }
+
 alias dorempoints {
   var %topic $+($1,.,$2)
   remini -n Points.ini %topic Points
   echo -a Removed points for %topic
 }
-on *:text:!crumbs:#:{
-  if ((%floodpoints) || ($($+(%,floodpoints.,$nick),2))) { return }
-  set -u30 %floodpoints. $+ $nick On
-  if ($readini(Points.ini,$+(#,.,$nick),Points) != null) {
-    msg # $nick has a total of $readini(Points.ini,$+(#,.,$nick),Points) Crumbs!
-  else {
-    msg # $nick! Please wait a few seconds for me to notice you, so I don't freak out and have a Null-Pointer-Exception! THANKS!
-  }
-}
-on $*:text:!pay /Si:#:{
-  if ($3 isnum) {
-    if ($readini(Points.ini,$nick,Points) >= $3 {
-		writeini -n Points.ini $+(#,.,$nick) Points $calc($readini(Points.ini,$nick,Points)-$3)
-		writeini -n Points.ini $+(#,.,$2) Points $calc($readini(Points,ini,$nick,Points)+$3)
-		msg $chan $nick has given $2 $3 crumbs!
-	}
-  }
- }
 
-on $*:text:/!crumbs (add|remove)/Si:#:{
-  if ($nick isop #) {
-    if ($0 < 3) { msg # Insufficient parameters: Use !points <add|remove> <user> [number] | return }
-    writeini -n Points.ini $+(#,.,$3) Points $calc($readini(Points.ini,$+(#,.,$3),Points) $iif($2 == add,+,-) $iif($4 isnum,$4,1))
-    { msg $chan $3 now has a total of $readini(Points.ini,$+(#,.,$3),Points) Crumbs! }
-  }
-  else { msg $chan This command is only available to moderators. }
-}
 
 on !*:join:#:{
   $+(.timerpoints.,#,.,$nick) 0 1200 add.pts $+(#,.,$nick)
@@ -108,9 +308,10 @@ on !*:join:#:{
   set %nachrichten. $+ $nick = 0
   if ($read(names.txt,nw,$nick) == $null) {
     write names.txt $nick
-    msg $chan Welcome $nick to the channel! You are now earning Crumbs!
+
   }
 }
+
 
 on !*:part:#:$+(.timerpoints.,#,.,$nick) off
 alias -l add.pts {
@@ -118,50 +319,3 @@ alias -l add.pts {
   if ((%floodpart) || ($($+(%,floodpart.,$nick),2))) { return }
   set -u10 %floodpart On
   set -u30 %floodpart. $+ $nick On
-}
-
-on *:TEXT:*:*: {
-  if (%nachrichten. [ $+ [ $nick ] ] == 4) {
-    set %nachrichten. $+ $nick 0
-    add.pts $+(#,.,$nick)}
-  }
-  else { inc %nachrichten. $+ $nick }
-  .timer $+ $nick 1 1200 unset %nachrichten. [ $+ [ $nick ] ]
-}
-
-//on *:text:!rank:#: {
-//  if ($readini(Points.ini,$+(#,.,$nick),Points) >= 0 && $readini(Points.ini,$+(#,.,$nick),Points <= 9) {
-//    msg $chan $nick you are rank1 with $readini(Points.ini,$+(#,.,$nick),Points) points!
-//  }
-//  elseif ($readini(Points.ini,$+(#,.,$nick),Points) >= 10 && ($readini(Points.ini,$+(#,.,$nick),Points) <= 19)) {
-//    msg $chan $nick you are rank2 with ($readini(Points.ini,$+(#,.,$nick),Points)) points!
-// }
-//}
-//Loops
-on *:TEXT:!startnostream:#: {
-  if ($nick isop $chan) { 
-    msg $chan Message cycle is now starting.
-    .timerNostream 0 10 .play # D:\mIRCMessages\NoStream\NoStream.txt
-  }
-}
-
-on *:TEXT:!stopnostream:#: {
-  if ($nick isop #) { 
-    msg $chan Message cycle is now stopping.
-    .timerNostream off
-  }
-}
-//Ranks
-on *:text:!rank:#:{
-  if ($readini(Points.ini,$nick,Points) <= 9) { msg # $nick you are a "Crumbling" with $readini(Points.ini,$nick,Points) Crumbs. Earn $calc(10 - $readini(Points.ini,$nick,Points)) More Crumbs To Become a "Crumb" }
-  if ($readini(Points.ini,$nick,Points) > 9) && ($readini(Points.ini,$nick,Points) <= 19) { msg # $nick you are a "Crumb" with $readini(Points.ini,$nick,Points) Crumbs. Earn $calc( 20 - $readini(Points.ini,$nick,Points)) More Crumbs To Become a "Cracker" }
-  if ($readini(Points.ini,$nick,Points) > 19) && ($readini(Points.ini,$nick,Points) <= 29) { msg # $nick you are a "Cracker" with $readini(Points.ini,$nick,Points) Crumbs. Earn $calc( 30 - $readini(Points.ini,$nick,Points)) More Crumbs To Become a "Flatbread" }
-  if ($readini(Points.ini,$nick,Points) > 29) && ($readini(Points.ini,$nick,Points) <= 39) { msg # $nick you are a "Flatbread" with $readini(Points.ini,$nick,Points) Crumbs. Earn $calc( 40 - $readini(Points.ini,$nick,Points)) More Crumbs To Become a "Bagel" }
-  if ($readini(Points.ini,$nick,Points) > 39) && ($readini(Points.ini,$nick,Points) <= 49) { msg # $nick you are a "Bagel" with $readini(Points.ini,$nick,Points) Crumbs. Earn $calc( 50 - $readini(Points.ini,$nick,Points)) More Crumbs To Become a "Doughnut" }
-  if ($readini(Points.ini,$nick,Points) > 49) && ($readini(Points.ini,$nick,Points) <= 59) { msg # $nick you are a "Doughnut" with $readini(Points.ini,$nick,Points) Crumbs. Earn $calc( 60 - $readini(Points.ini,$nick,Points)) More Crumbs To Become a "Un-Toasted Bread" }
-  if ($readini(Points.ini,$nick,Points) > 59) && ($readini(Points.ini,$nick,Points) <= 69) { msg # $nick you are an "Un-Toasted Bread" with $readini(Points.ini,$nick,Points) Crumbs. Earn $calc( 70 - $readini(Points.ini,$nick,Points)) More Crumbs To Become a "Piece 'o Toast" }
-  if ($readini(Points.ini,$nick,Points) > 69) && ($readini(Points.ini,$nick,Points) <= 79) { msg # $nick you are a "Piece 'o Toast" with $readini(Points.ini,$nick,Points) Crumbs. Earn $calc( 80 - $readini(Points.ini,$nick,Points)) More Crumbs To Become some "Buttered Toast" }
-  if ($readini(Points.ini,$nick,Points) > 79) && ($readini(Points.ini,$nick,Points) <= 89) { msg # $nick you are some "Buttered Toast" with $readini(Points.ini,$nick,Points) Crumbs. Earn $calc( 90 - $readini(Points.ini,$nick,Points)) More Crumbs To Become a "Solid Gold Toast Statue" }
-  if ($readini(Points.ini,$nick,Points) > 89) && ($readini(Points.ini,$nick,Points) <= 99) { msg # $nick you are a "Solid Gold Toast Statue" with $readini(Points.ini,$nick,Points) Crumbs. Earn $calc( 100 - $readini(Points.ini,$nick,Points)) More Crumbs To Become a "Mini-BootyToast" }
-  if ($readini(Points.ini,$nick,Points) > 89) && ($readini(Points.ini,$nick,Points) <= 99) { msg # $nick you are a "Mini-BootyToast" with $readini(Points.ini,$nick,Points) Crumbs. }
-}
