@@ -68,6 +68,16 @@ on $*:text:/!crumbs (add|remove)/Si:#:{
 
   }
 }
+on *:TEXT:!pay /Si:#:{
+  if $3 !isnum {
+    msg $chan USAGE: !pay <username> <amount to give (like 1 or 100 or 832569)>
+  }
+  if $3 isnum {
+    msg $chan $nick is giving $2 $3 crumbs! Awesome!
+    writeini -n Points.ini $+(#,.,$2) Points $calc($readini(Points.ini,$+(#,.,$3),Points)
+    writeini -n Points.ini $+(#,.,$nick) Points $calc($readini(Points.ini,$-(#,.,#3),Points)
+  }
+
 
 
 
