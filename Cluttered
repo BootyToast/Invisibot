@@ -35,6 +35,34 @@ on *:TEXT:*!song*:#:{
 
 
 
+//VOICE
+
+
+
+on *:TEXT:*!voicehigh*:#: {
+
+  if ($readini(Points.ini,$+(#,.,$nick),Points) > 5) {
+
+    if ((%flooddeepvoice) || ($($+(%,flooddeepvoice.,$nick),2))) { return }
+    set -u10 %flooddeepvoice On
+    set -u30 %flooddeepvoice. $+ $nick On
+
+    .timerOndeep 1 1 { /sendkey +(-) }
+
+    .timerOffdeep 1 16 { /sendkey +(-) }
+
+    writeini -n Points.ini $+(#,.,$nick) Points $calc($readini(Points.ini,$+(#,.,$nick),Points) $iif($1 == add,+,-) $iif($1 isnum,$1,6))
+  }
+
+
+}
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 //CRUMBS
 
 
