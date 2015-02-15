@@ -80,35 +80,6 @@ on *:TEXT:!pay /Si:#:{
 
 
 
-
-//--------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-//SOUNDS
-
-
-on *:TEXT:*!commands*:#: { msg $chan The list of interactive commands can be found here! http://pastebin.com/fhwFu1TR }
-
-on $*:text:/(!banana|!bwah|!bwah2|!bwah3|!byeah|!chocolate|!creeper|!cry|!damn|!dude|!haha|!hubba|!hwhat|!iloveyou|!IMDABES|!imrich|!ineedit|!leedle|!man|!meep|!noscoped|!okay|!ouh|!pew|!porkchop|!propane|!reggae|!squidward|!val|!weed|!what|!yeah)$/i:#: { if ($readini(Points.ini,$+(#,.,$nick),Points) > 0) {
-//if $nick !=isop{
-    writeini -n Points.ini $+(#,.,$nick) Points $calc($readini(Points.ini,$+(#,.,$nick),Points) $iif($1 == add,+,-) $iif($1 isnum,$1,1))
-//}
-  splay -w D:/MyMusic/Sounds/ $+ $1 $+ .wav }
-
-}
-
-on *:TEXT:*!readchat*:#: {
-
-  if ($nick isop #) { if ($nick != XenosLastStand){
-    splay -w D:/MyMusic/Sounds/!readchat.wav  
-  }else{
-    msg $chan XENO! GIT OUT OF HERE! NO !readchat FOR YOU!
-  }
-}
-
-
-
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -116,49 +87,43 @@ on *:TEXT:*!readchat*:#: {
 //PLAY
 
 
-on *:TEXT:*!dur*:#:{ 
+
+on *:TEXT:*!dur*:#: { 
 
   if ($readini(Points.ini,$+(#,.,$nick),Points) > 1) {
 
-    .timerDurr 1 0.5 { /yfloodfill D:\Photos\bootytoast\Pictures\Stream\durr.jpg }
-
-    .timerGame 1 0.6 { /sendkey +(`) }  
-
-    .timerClose 1 1.5 { /close -@durr.jpg }
-
-    .timerDurrs 1 0.5 { splay -w D:/MyMusic/Sounds/!durr3.wav }
+    .timerA 1 3 { /sendkey ^% $+ a }
 
     writeini -n Points.ini $+(#,.,$nick) Points $calc($readini(Points.ini,$+(#,.,$nick),Points) $iif($1 == add,+,-) $iif($1 isnum,$1,2))
 
   }
+
 }
 
 
-on *:TEXT:*!dumb*:#:{ 
+on *:TEXT:*!lam*:#: { 
 
-  if ($readini(Points.ini,$+(#,.,$nick),Points) > 3) {
+  if ($readini(Points.ini,$+(#,.,$nick),Points) > 1) {
 
-    .timerKarate 1 0.5 { /yfloodfill D:\Photos\bootytoast\Pictures\Stream\karate.jpg }
-    .timerKarate2 1 2.5 { /yfloodfill D:\Photos\bootytoast\Pictures\Stream\karate2.jpg }
-    .timerKarate3 1 4.5 { /yfloodfill D:\Photos\bootytoast\Pictures\Stream\karate3.jpg }
+    .timerB 1 3 { /sendkey ^% $+ b }
 
-    .timerClosekarate 1 1.5 { /close -@karate.jpg }
-    .timerClosekarate2 1 3.5 { /close -@karate2.jpg }
-    .timerClosekarate3 1 5.5 { /close -@karate3.jpg }
-
-    .timerKaratesound 1 0.5 { splay -w D:/MyMusic/Sounds/karate.wav }
-    .timerKaratesound2 1 2.5 { splay -w D:/MyMusic/Sounds/karate2.wav }
-    .timerKaratesound3 1 4.5 { splay -w D:/MyMusic/Sounds/karate3.wav }
-
-    .timerGamekarate 1 0.6 { /sendkey +(`) }
-    .timerGamekarate2 1 2.6 { /sendkey +(`) }
-    .timerGamekarate3 1 4.6 { /sendkey +(`) }
-
-
-
-    writeini -n Points.ini $+(#,.,$nick) Points $calc($readini(Points.ini,$+(#,.,$nick),Points) $iif($1 == add,+,-) $iif($1 isnum,$1,4))
+    writeini -n Points.ini $+(#,.,$nick) Points $calc($readini(Points.ini,$+(#,.,$nick),Points) $iif($1 == add,+,-) $iif($1 isnum,$1,2))
 
   }
+
+}
+
+
+on *:TEXT:*!hubba*:#: { 
+
+  if ($readini(Points.ini,$+(#,.,$nick),Points) > 1) {
+
+    .timerC 1 3 { /sendkey ^% $+ c }
+
+    writeini -n Points.ini $+(#,.,$nick) Points $calc($readini(Points.ini,$+(#,.,$nick),Points) $iif($1 == add,+,-) $iif($1 isnum,$1,2))
+
+  }
+
 }
 
 
@@ -217,6 +182,31 @@ on *:TEXT:*!stoplinks:#: {
     .timerLinks off
     .timerCommands off
   }
+}
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//SOUNDS
+
+on *:TEXT:*!commands*:#: { msg $chan /me The list of interactive commands can be found here! http://pastebin.com/fhwFu1TR }
+
+//on *:TEXT:*!readchat*:#: {
+
+  if ($nick isop #) { if ($nick != XenosLastStand) { splay -w D:/MyMusic/Sounds/modonly/ $+ $1 $+ .wav }
+
+  }
+}
+
+on !*:TEXT:!*:#: { if ($readini(Points.ini,$+(#,.,$nick),Points) > 0) {
+
+    splay -w D:/MyMusic/Sounds/ $+ $1 $+ .wav 
+
+  writeini -n Points.ini $+(#,.,$nick) Points $calc($readini(Points.ini,$+(#,.,$nick),Points) $iif($1 == add,+,-) $iif($1 isnum,$1,1)) }
+
 }
 
 
