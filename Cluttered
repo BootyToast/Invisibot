@@ -339,6 +339,18 @@ alias -l add.pts {
   set -u10 %floodpart On
   set -u30 %floodpart. $+ $nick On
 //-----------------------------------------------------------------------------------------------------------------------
+//Toasts
+on *:TEXT:!toastadd:#:{
+  if $nick != kd8lvt or bootytoast{
+    msg $chan You do not have permission for this command. If you think this is an error, please contact your network administrator. AKA Booty.
+  }else{
+    writeini -n Toasts.ini $2 Points $calc($readini(Toasts.ini,$2,Toasts) + 1)
+  }
+}
+on *:TEXT:!toast:#:{
+    msg # $nick has $readini(Toasts.ini,$+(#,.,$nick),Toasts) Toast Slices! Congrats on getting $readini(Points.ini,$+(#,.,$2),Points) crumbs!
+}
+//-----------------------------------------------------------------------------------------------------------------------
 //Secrets
 on *:TEXT:!awesome*:#:{
   if $nick != kd8lvt{
@@ -377,6 +389,6 @@ on *:TEXT:!huggledef:#:{
 }
 on *:TEXT:!lurk:#:{
   color BlueViolet
-  me $nick lurks in the shadows...
+  msg $chan /me $nick lurks in the shadows...
   color HotPink
 }
