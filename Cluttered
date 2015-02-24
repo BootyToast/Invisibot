@@ -392,3 +392,9 @@ on *:TEXT:!lurk:#:{
   msg $chan /me $nick lurks in the shadows...
   color HotPink
 }
+on *:TEXT:!mythiey:#:{msg $chan /me Mythiey is a derp. BUT AWESOME!}
+on *:JOIN:#:{
+  if $nick = Teeshol{
+    msg $chan TEESHSHSHHSHSHSHHSHSHSHHSHSHSHHSHSHHSHSHHSHSHHSH
+  }
+}
