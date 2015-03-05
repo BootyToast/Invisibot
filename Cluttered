@@ -163,23 +163,25 @@ on *:TEXT:*!hubba*:#: {
 //ABOUT GAME
 
 
-on *:TEXT:*!ip*:#: { msg $chan The viewer server is a Sky Factory 2 whitelisted server! Earn 50 Crumbs to be considered! Type "!crumbs" to view your Crumbs! }
+on *:TEXT:*!ip*:#: { msg $chan The viewer server is a Sky Factory 2 whitelisted server! Earn 50 Crumbs to be considered! Type "!crumbs" to view your Crumbs! (As well as that, Kd8lvt has set up a Bytesize server, but that is private. Ask once you have 3,000 crumbs. Kappa) }
 
 //on *:TEXT:*!map*:#: { msg $chan This map is Sea of Flame II from Vechs' Super Hostile map series. Find out more information here! http://www.minecraftforum.net/forums/mapping-and-modding/maps/1454714-ctm-collection-vechs-super-hostile-series }
 
+//on *:TEXT:/(!mp|!modpack|!pack|!mods|!mod)$/i:#: { msg $chan This pack is Bytesize on the AT Launcher! Get the ATLauncher here! http://www.atlauncher.com }
+
 //on $*:text:/(!mp|!modpack|!pack|!mods|!mod)$/i:#: { msg $chan This pack is vanilla Minecraft by Mojang on the Minecraft launcher! [PACK CODE: Kappa] Find out information here! http://www.Minecraft.net }
 
-//on $*:text:/(!mp|!modpack|!pack|!mods|!mod)$/i:#: { msg $chan This pack is ME^4 by parcel31u on the FTB launcher! Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-material-energy-4.57967/ }
+//on $*:text:/(!mp|!modpack|!pack|!mods|!mod)$/i:#: { msg $chan This pack is ME^4 by parcel31u on the FTB launcher! Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-material-energy-4.57967/ And here! http://www.feed-the-beast.com }
 
-//on $*:text:/(!mp|!modpack|!pack|!mods|!mod)$/i:#: { msg $chan This pack is the Direwolf20 1.7.10 pack on the FTB Launcher! Find out information here! http://forum.feed-the-beast.com/forum/direwolf20-1-7-10.175/ }
+//on $*:text:/(!mp|!modpack|!pack|!mods|!mod)$/i:#: { msg $chan This pack is the Direwolf20 1.7.10 pack on the FTB Launcher! Find out information here! http://forum.feed-the-beast.com/forum/direwolf20-1-7-10.175/ And here! http://www.feed-the-beast.com }
 
-on $*:text:/(!mp|!modpack|!pack|!mods|!mod)$/i:#: { msg $chan This pack is FTB Infinity on the FTB Launcher! }
+on $*:text:/(!mp|!modpack|!pack|!mods|!mod)$/i:#: { msg $chan This pack is FTB Infinity on the FTB Launcher! (http://www.feed-the-beast.com) }
 
-//on $*:text:/(!mp|!modpack|!pack|!mods|!mod)$/i:#: { msg $chan This pack is The Dark Trilogy on the FTB Launcher 3rd party section! Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-the-dark-trilogy-public-beta.51854/ }
+//on $*:text:/(!mp|!modpack|!pack|!mods|!mod)$/i:#: { msg $chan This pack is The Dark Trilogy on the FTB Launcher 3rd party section! Find out information here! http://forum.feed-the-beast.com/threads/1-7-10-the-dark-trilogy-public-beta.51854/ And here! http://www.feed-the-beast.com }
 
-//on $*:text:/(!mp|!modpack|!pack|!mods|!mod)$/i:#: { msg $chan This is Sky Factory 2 on the ATLauncher! }
+//on $*:text:/(!mp|!modpack|!pack|!mods|!mod)$/i:#: { msg $chan This is Sky Factory 2 on the ATLauncher! Get the ATLauncher here! www.atlauncher.com}
 
-//on $*:text:/(!mp|!modpack|!pack|!mods|!mod)$/i:#: { msg $chan This is MadPack 2 on the ATLauncher! }
+//on $*:text:/(!mp|!modpack|!pack|!mods|!mod)$/i:#: { msg $chan This is MadPack 2 on the ATLauncher! Get the ATLauncher here! www.atlauncher.com }
 
 on $*:text:/(!tp|!texture|!texturepack|!resource|!resourcepack)$/i:#: { msg $chan Sometimes I use the Modded Faithful 32x32 Texturepack. Get it here! http://www.magnificentbastards.net/faithful/ }
 
@@ -339,62 +341,3 @@ alias -l add.pts {
   set -u10 %floodpart On
   set -u30 %floodpart. $+ $nick On
 //-----------------------------------------------------------------------------------------------------------------------
-//Toasts
-on *:TEXT:!toastadd:#:{
-  if $nick != kd8lvt or bootytoast{
-    msg $chan You do not have permission for this command. If you think this is an error, please contact your network administrator. AKA Booty.
-  }else{
-    writeini -n Toasts.ini $2 Points $calc($readini(Toasts.ini,$2,Toasts) + 1)
-  }
-}
-on *:TEXT:!toast:#:{
-    msg # $nick has $readini(Toasts.ini,$+(#,.,$nick),Toasts) Toast Slices! Congrats on getting $readini(Points.ini,$+(#,.,$2),Points) crumbs!
-}
-//-----------------------------------------------------------------------------------------------------------------------
-//Secrets
-on *:TEXT:!awesome*:#:{
-  if $nick != kd8lvt{
-    msg $chan Only kd can do this command. GIT OUT OF MY BIZ!
-  }else{
-    msg $chan KD8LVT IS THE AWESOMEST PERSON EVAR! DON'T QUESTION IT! AT ALL! (Booty is #2 and all you are tied at #3, just sayin.)
-  }
-}
-on *:TEXT:!judge*:#:{
-  msg $chan Only if booty says Don't judge me, may you judge him... THANKS!!! <3 > <3
-}
-on *:TEXT:!choobneedsmorecrumbs*:#:{
-  if $nick != choobtastic{
-    msg $chan Only Choobtastic may use this command!
-  }else{
-    msg $chan Choob, you know what we say about hacking! BAD CHOOB! BAD! (You owe Kd one nubcake in your channel Kappa)
-    
-  }
-}
-on *:TEXT:!hug:#:{
-  msg $chan $nick just hugged $2! How sweet!
-}
-on *:TEXT:!hugall:#:{
-  msg $chan $nick just hugged EVERYONE! How sweet!
-}
-on *:TEXT:!timeout:#:{
-  msg $chan Timing out $2...
-  timeout $nick
-  msg $chan WHOOPS! Wrong person! Kappa <3
-}
-on *:TEXT:!huggles:#:{
-  me $nick just huggled $2! Awww!
-}
-on *:TEXT:!huggledef:#:{
-  msg $chan A huggle is hugging and snuggling at the same time... very cute.
-}
-on *:TEXT:!lurk:#:{
-  color BlueViolet
-  msg $chan /me $nick lurks in the shadows...
-  color HotPink
-}
-on *:TEXT:!mythiey:#:{msg $chan /me Mythiey is a derp. BUT AWESOME!}
-on *:JOIN:#:{
-  if $nick = Teeshol{
-    msg $chan TEESHSHSHHSHSHSHHSHSHSHHSHSHSHHSHSHHSHSHHSHSHHSH
-  }
-}
